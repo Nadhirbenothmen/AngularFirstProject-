@@ -1,0 +1,5 @@
+<div class="row">
+    <div class="col" *ngFor="let t of listTv">
+        <app-show-one-product [p]="t" (notif)="afterRecieveData($event)"></app-show-one-product>
+    </div>
+</div>

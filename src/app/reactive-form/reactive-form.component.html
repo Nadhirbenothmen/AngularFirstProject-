@@ -1,0 +1,30 @@
+<p>FormControl</p>
+<label> Login</label>
+<input type="text" placeholder="login" [formControl]="login">
+
+<label> Password</label>
+<input type="text" placeholder="password" [formControl]="pwd">
+<input type="button" value="save" (click)="save()" [disabled]="login.invalid || pwd.invalid">
+
+<p>FormGroup</p>
+
+<form [formGroup]="registerForm">
+    <label> Login</label>
+    <input class="form-control" type="text" placeholder="login" formControlName="login">
+    <div class="alert alert-danger" *ngIf="this.registerForm.controls['login'].invalid
+    && this.registerForm.controls['login'].touched">
+        <div *ngIf="this.registerForm.get('login')?.hasError('minlength')">Login minLength 6</div>
+        <div *ngIf="this.registerForm.get('login')?.hasError('required')">Login required</div>
+    </div>
+    <label> Password</label>
+    <input class="form-control" type="password" placeholder="password" formControlName="pwd">
+
+    <div class="alert alert-danger" *ngIf="this.registerForm.controls['pwd'].invalid
+    && this.registerForm.controls['pwd'].touched">
+        <div *ngIf="this.registerForm.get('pwd')?.hasError('required')">password required</div>
+        <div *ngIf="this.registerForm.get('pwd')?.hasError('minlength')">password minLength 6</div>
+        <div *ngIf="this.registerForm.get('pwd')?.hasError('pattern')">password pattern</div>
+
+    </div>
+    <input class="btn btn-success" type="button" value="save" (click)="save()" [disabled]="registerForm.invalid">
+    <form>
